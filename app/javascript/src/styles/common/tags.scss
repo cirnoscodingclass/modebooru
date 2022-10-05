@@ -57,3 +57,17 @@
     color: var(--meta-tag-hover-color);
   }
 }
+
+.tag-type-6 a, a.tag-type-6 {
+  color: var(--brand-tag-color);
+  color: var(--brand-tag-hover-color);
+
+  &:link, &:visited {
+    color: var(--brand-tag-color);
+  }
+
+  &:hover {
+    color: var(--brand-tag-hover-color);
+  }
+}
+

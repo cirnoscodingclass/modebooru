@@ -23,7 +23,7 @@ class TagRelationship < ApplicationRecord
 
   # TagAlias.artist, TagAlias.general, TagAlias.character, TagAlias.copyright, TagAlias.meta
   # TagImplication.artist, TagImplication.general, TagImplication.character, TagImplication.copyright, TagImplication.meta
-  TagCategory.categories.each do |category|
+  TagCategory.categories.without("brand").each do |category|
     scope category, -> { joins(:consequent_tag).where(consequent_tag: { category: TagCategory.mapping[category] }) }
   end
 
@@ -156,7 +156,7 @@ class TagRelationship < ApplicationRecord
     tag_relationship.process!
   end
 
-  def self.model_restriction(table)
+  def self.brand_restriction(table)
     super.where(table[:status].eq("active"))
   end
 

@@ -11,6 +11,7 @@ module TagCategory
   COPYRIGHT = 3
   CHARACTER = 4
   META = 5
+  BRAND = 6
 
   # Returns a hash mapping various tag categories to a numerical value.
   def mapping
@@ -26,6 +27,7 @@ module TagCategory
       "character" => 4,
       "copyright" => 3,
       "artist" => 1,
+      "brand" => 6,
     }
   end
 
@@ -33,6 +35,7 @@ module TagCategory
   def canonical_mapping
     {
       "Artist"    => 1,
+      "brand"     => 6,
       "Copyright" => 3,
       "Character" => 4,
       "General"   => 0,
@@ -48,6 +51,7 @@ module TagCategory
       3 => "copyright",
       1 => "artist",
       5 => "meta",
+      6 => "brand",
     }
   end
 
@@ -58,11 +62,12 @@ module TagCategory
       "char" => "character",
       "gen"  => "general",
       "meta" => "meta",
+      "brand"  => "brand",
     }
   end
 
   def categories
-    %w[general character copyright artist meta]
+    %w[general character copyright artist meta brand]
   end
 
   def category_ids
@@ -70,17 +75,17 @@ module TagCategory
   end
 
   def short_name_list
-    %w[art copy char gen meta]
+    %w[art copy char gen meta brand]
   end
 
   # The order of tags on the post page tag list.
   def split_header_list
-    %w[artist copyright character general meta]
+    %w[artist brand copyright character general meta]
   end
 
   # The order of tags inside the tag edit box, and on the comments page.
   def categorized_list
-    %w[artist copyright character meta general]
+    %w[artist brand copyright character meta general]
   end
 
   # Which tag categories to show in the related tags box for a tag of the given type.
@@ -88,6 +93,7 @@ module TagCategory
     @related_tag_categories ||= {
       GENERAL   => [GENERAL],
       ARTIST    => [COPYRIGHT, CHARACTER, GENERAL],
+      BRAND     => [COPYRIGHT, CHARACTER, GENERAL],
       CHARACTER => [COPYRIGHT, CHARACTER, GENERAL],
       COPYRIGHT => [COPYRIGHT, CHARACTER, GENERAL],
       META      => [META, GENERAL]
@@ -99,6 +105,7 @@ module TagCategory
     @search_sidebar_tag_categories ||= {
       GENERAL   => [COPYRIGHT, CHARACTER, GENERAL, META],
       ARTIST    => [COPYRIGHT, CHARACTER, GENERAL, META],
+      BRAND     => [COPYRIGHT, CHARACTER, GENERAL, META],
       CHARACTER => [COPYRIGHT, CHARACTER, GENERAL, META],
       COPYRIGHT => [COPYRIGHT, CHARACTER, GENERAL, META],
       META      => [COPYRIGHT, CHARACTER, META, GENERAL],
