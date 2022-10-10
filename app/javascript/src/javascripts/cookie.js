@@ -44,14 +44,4 @@ Cookie.unescape = function(val) {
 Cookie.getItem = Cookie.get;
 Cookie.setItem = Cookie.put;
 
-Cookie.initialize = function() {
-  if (this.get("hide-upgrade-account") !== "1") {
-    $("#upgrade-account").show();
-  }
-}
-
-$(function() {
-  Cookie.initialize();
-});
-
 export default Cookie
