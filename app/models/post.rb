@@ -1995,7 +1995,7 @@ class Post < ApplicationRecord
   end
 
   def visible?(user = CurrentUser.user)
-    !safeblocked? && !levelblocked?(user) && !banblocked?(user)
+    !safeblocked? && !levelblocked?(user) && !banblocked?(user) && (!in_modqueue? || user.is_approver?)
   end
 
   def reload(options = nil)
