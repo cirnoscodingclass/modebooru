@@ -785,6 +785,11 @@ module Danbooru
       # "redis://localhost:6379"
     end
 
+     # True if the Winter Sale is active.
+     def is_promotion?
+      false
+    end
+
     # A list of emojis supported in DText.
     def dtext_emojis
       @dtext_emojis ||= {
